@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 import AppHeader from "../app-header/app-header";
 import SearchPanel from "../search-panel/search-panel";
