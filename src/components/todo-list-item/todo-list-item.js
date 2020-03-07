@@ -1,49 +1,24 @@
 import React from "react";
 import './todo-list-item.css'
 
-class TodolistItem extends React.Component {
+const TodolistItem = ({label, onDeleted, onToggleImortant, onToggleDone, isDone, important}) => {
 
-    state = {
-        isDone: false,
-        important: false
-    };
+    let classNames = 'todo-list-item';
+    if (isDone) {
+        classNames += ' done'
+    }
+    if (important) {
+        classNames += ' important'
+    }
 
-    onLabelClick = () => {
-        this.setState(({isDone}) => {
-            return {
-                isDone: !isDone
-            }
-        })
-    };
-
-    onMarkImportant = () => {
-        this.setState(({important}) => {
-            return {
-                important: !important
-            }
-        })
-    };
-
-    render() {
-        const {label, onDeleted} = this.props;
-        const {isDone, important} = this.state;
-
-        let classNames = 'todo-list-item';
-        if (isDone) {
-            classNames += ' done'
-        }
-        if (important) {
-            classNames += ' important'
-        }
-
-        return (
-            <span className={classNames}>
+    return (
+        <span className={classNames}>
                 <span className="todo-list-item-label"
-                      onClick={this.onLabelClick}>
+                      onClick={onToggleDone}>
                     {label}
                 </span>
 
-                <button onClick={this.onMarkImportant} type="button"
+                <button onClick={onToggleImortant} type="button"
                         className="btn btn-outline-success btn-sm float-right">
                     <i className="fa fa-exclamation"/>
                 </button>
@@ -52,9 +27,8 @@ class TodolistItem extends React.Component {
                     <i className="fa fa-trash-o"/>
                 </button>
             </span>
-        )
-    }
-}
+    )
+};
 
 
 export default TodolistItem;
